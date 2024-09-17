@@ -1,117 +1,61 @@
-/* Global styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-
-.App {
-  display: flex;
-}
-
-h1 {
-  color: #fff;
-}
-
-/* Navbar styles */
-.navbar {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.hamburger-menu {
-  cursor: pointer;
-  font-size: 24px;
-}
-
-/* Sidebar styles */
-.sidebar {
-  width: 250px;
-  height: 100vh;
-  background-color: #333;
-  color: white;
-  padding: 15px;
+.sidebar-container {
   position: fixed;
   top: 0;
-  left: -100%;
-  transition: 0.3s ease;
+  left: 0;
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
 }
 
-.sidebar.active {
-  left: 0;
+.sidebar-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sidebar {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 250px;
+  height: 100%;
+  transition: 0.5s ease-in-out;
+}
+
+.sidebar.open {
+  width: 250px;
 }
 
 .sidebar ul {
   list-style: none;
+  padding: 0;
 }
 
-.sidebar ul li {
-  padding: 15px;
-  display: flex;
-  align-items: center;
+.sidebar li {
+  margin-bottom: 10px;
 }
 
-.sidebar ul li a {
-  color: white;
+.sidebar a {
   text-decoration: none;
-  margin-left: 10px;
-  flex-grow: 1;
+  color: #333;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
 }
 
-.sidebar ul li:hover {
-  background-color: #555;
-  cursor: pointer;
+.sidebar a:hover {
+  background-color: #ddd;
 }
 
-/* Dropdown styles */
-.dropdown {
-  list-style: none;
-  background-color: #444;
-  padding-left: 20px;
-  margin-top: 5px;
+.dropdown-menu {
+  display: none;
+  background-color: #f0f0f0;
+  padding: 10px;
 }
 
-.dropdown li {
-  padding: 10px 0;
-}
-
-.dropdown li a {
-  color: #ddd;
-  text-decoration: none;
-}
-
-/* Main content */
-main {
-  margin-left: 250px;
-  padding: 20px;
-  transition: 0.3s ease;
-}
-
-main h2 {
-  margin-bottom: 20px;
-}
-
-/* Media Queries for responsive design */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 200px;
-  }
-
-  main {
-    margin-left: 0;
-  }
-
-  .sidebar.active + main {
-    margin-left: 200px;
-  }
+.dropdown-menu.open {
+  display: block;
 }
 

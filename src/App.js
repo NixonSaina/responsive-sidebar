@@ -1,79 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { FaBars, FaTimes, FaHome, FaUserAlt, FaAngleDown } from 'react-icons/fa';
+//App.js
 
 
-//Main function of the app
-function App() {
-  const [sidebar, setSidebar] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-  const [showHamburger, setShowHamburger] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+import React, { useState } from 'react';
+import './Sidebar.css'; // Custom styles for the sidebar
 
-  const toggleSidebar = () => setSidebar(!sidebar);
-  const toggleDropdown = () => setDropdown(!dropdown);
 
-  // Function to handle scroll and hide/show hamburger menu based on scroll direction
-  const handleScroll = () => {
-    if (window.scrollY > lastScrollY) {
-      // User is scrolling down
-      setShowHamburger(false);
-    } else {
-      // User is scrolling up
-      setShowHamburger(true);
-    }
-    setLastScrollY(window.scrollY);
+// Create a Sidebar component with a open and close toggle state
+function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY]);
 
+// Render the Sidebar with a clickable hamburger icon 
   return (
-    <div className="App">
-      <header className="navbar">
-        {showHamburger && (
-          <div className="hamburger-menu" onClick={toggleSidebar}>
-            {sidebar ? <FaTimes /> : <FaBars />}
-          </div>
-        )}
-        <h1>Responsive Sidebar</h1>
-      </header>
-      <aside className={`sidebar ${sidebar ? 'active' : ''}`}>
+    <div className="sidebar-container">
+      {/* Hamburger Icon */}
+      <div className="hamburger" onClick={toggleSidebar}>
+        &#9776;
+      </div>
+
+
+      {/* Sidebar */}
+      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <ul>
-          <li>
-            <FaHome /> <a href="#">Home</a>
-          </li>
-          <li onClick={toggleDropdown}>
-            <FaUserAlt /> <a href="#">Profile</a> <FaAngleDown />
-            {dropdown && (
-              <ul className="dropdown">
-                <li><a href="#">View Profile</a></li>
-                <li><a href="#">Edit Profile</a></li>
-              </ul>
-            )}
-          </li>
-          <li>
-            <FaUserAlt /> <a href="#">About</a>
-          </li>
+          <li><a href="#dashboard"> TutorialsPoint Dashboard</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#settings">Settings</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+          <li><a href="#support">Support</a></li>
         </ul>
-      </aside>
-      <main>
-        <h2>Welcome to the TutorialsPoint Responsive Sidebar Example!</h2>
-        <p>
-          Resize the window or click the hamburger menu to see the sidebar in action.
-          Scroll the page up and down to see the hamburger auto-hide.
-        </p>
-        <p>
-          This is the TutorialsPoint responsive sidebar practice project.         </p>
-        {/* Additional content to make the page scroll */}
-        <div style={{ height: '150vh' }}></div>
-      </main>
+      </div>
     </div>
   );
 }
 
-export default App;
+
+export default Sidebar;
